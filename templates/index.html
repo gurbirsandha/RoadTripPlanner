@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Road Trip Planner</title>
+{% endblock %}
+
+{% block body %}
+
+<div class="main">
+    <h1>Plan Your Road Trip</h1>
+    {% if dests|length < 1 %}
+    <h4>Your itinerary is empty. Start by adding a destination!</h4>
+    {% else %}
+    <br/><br/>
+    <table class="table">
+        <tr>
+            <th>Itinerary</th>
+            <th>Actions</th>
+        </tr>
+        {% for dest in dests %}
+            <tr>
+                <td>{{ dest.dest }}</td>
+                <td>
+                    <a href="/delete/{{dest.id}}">Delete</a>
+                    <br/>
+                    <a href="/update/{{dest.id}}">Update</a>
+                    <br/>
+                    <a href="/moveUp/{{dest.id}}">Move Up</a>
+                    <br/>
+                    <a href="/moveDown/{{dest.id}}">Move Down</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+    <form action="/" method="POST">
+        <input type="text" name="destination", id="destination", placeholder="e.g. Moose Jaw, SK">
+        <input type="submit" value="Add Destination", id="button">
+    </form>
+    <a href="/seeMap">Show Route Map</a>
+</div>
+{% endblock %}

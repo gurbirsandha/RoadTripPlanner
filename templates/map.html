@@ -1,0 +1,82 @@
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>Google Maps - gmplot</title>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=visualization&key=AIzaSyDJvLmeQoalVvo8h9lDP7c7j7n-9sneYhQ"></script>
+<script type="text/javascript">
+    function initialize() {
+        var map = new google.maps.Map(document.getElementById("map_canvas"), {
+            zoom: 15,
+            center: new google.maps.LatLng(49.499138, -119.593708)
+        });
+
+        var marker_icon_00FFFF = {
+            url: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAiCAYAAACwaJKDAAAABmJLR0QA/wD/AP+gvaeTAAACWklEQVRIia3VsWsUWRwH8M+sbBLBlVTHXWSjhYUg6hE4sTiSxsJGSw0W+QsEsb0ywqEERbERbL3isAmRKzRHNLBdcCEBEYWACkaFIJGcXly5/V0xO8HVZDLZ9QuP2Zmd32ffvH3zXiI/B/Er9qCEJl6hhsebFSWbXD+O3/GLwUEOH6a/n5UVFhZ4+RLm8Bv+3qJjElySJE2jo6FeD81miGhv9XoYHQ1J0sSlnM5JcE2lEu7e/RbaqE1NhUolcG0z+Ly+vlCrFQOzVquFvr7A+a/BAXxw5cr2wKxdvRr40HLWc9HevaHR6AxtNMK+fYGLpNMEThkbo1ze6o/cOOUyY2Op00J34ICRkc7ALMPDcAA7Siijx+Bgd2ha34Nyaf1iRHfoF/UlNNDw4kV3aFrfQCN7n5+Yne0OTeuftDwwrloNnz51PqWq1cD4l7/zE1ZdvtwZOjERWG05bTmnpyc8fLg9cHY29PYGzm02MtdVKmFurhj46FHYvTtwPW+4E/xhYCAsLeWDy8vZOP4pZ+nLshMLTpzYeC3N2pkzgafYtRWY5Wd8dvv2xuD0dCAwXBTMckO1GtbW2sFmMxw9GrizXRB+wEe3brWjMzMhneCHOkHhpiNH2tHTp0OBzS4vQwjz8ym4spJtHWfzikp5X6KOZyYn07N791hb+xdT3aDwl+np9NP9+/AA/xSoy81Jvb3pYrN/f+BCtyD8iHRNSJLAsa0Kijz+GyybnCTiP8x32cn1zBkaCiwWublIT2HZ4iIU2nOKou+8f0+6EH839G3ruPQ90det4/MiN/8PKdVHNJgcHSIAAAAASUVORK5CYII=",
+            labelOrigin: new google.maps.Point(10, 11)
+        };
+
+        new google.maps.Marker({
+            position: new google.maps.LatLng(52.873679, -118.081358),
+            title: "Jasper, AB",
+            label: "1",
+            icon: marker_icon_00FFFF,
+            map: map
+        });
+
+        new google.maps.Marker({
+            position: new google.maps.LatLng(51.296119, -116.963137),
+            title: "Golden, BC",
+            label: "2",
+            icon: marker_icon_00FFFF,
+            map: map
+        });
+
+        new google.maps.Marker({
+            position: new google.maps.LatLng(49.499138, -119.593708),
+            title: "Penticton, BC",
+            label: "3",
+            icon: marker_icon_00FFFF,
+            map: map
+        });
+
+        new google.maps.Marker({
+            position: new google.maps.LatLng(47.606209, -122.332071),
+            title: "Seattle, WA",
+            label: "4",
+            icon: marker_icon_00FFFF,
+            map: map
+        });
+
+        new google.maps.Marker({
+            position: new google.maps.LatLng(32.715738, -117.161084),
+            title: "San Diego, CA",
+            label: "5",
+            icon: marker_icon_00FFFF,
+            map: map
+        });
+
+        new google.maps.DirectionsService().route({
+            origin: new google.maps.LatLng(52.873679, -118.081358),
+            destination: new google.maps.LatLng(32.715738, -117.161084),
+            waypoints: [
+                {location: new google.maps.LatLng(52.873679, -118.081358), stopover: false},
+                {location: new google.maps.LatLng(51.296119, -116.963137), stopover: false},
+                {location: new google.maps.LatLng(49.499138, -119.593708), stopover: false},
+                {location: new google.maps.LatLng(47.606209, -122.332071), stopover: false},
+                {location: new google.maps.LatLng(32.715738, -117.161084), stopover: false},
+            ],
+            travelMode: "DRIVING"
+        }, function(response, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+                new google.maps.DirectionsRenderer({map: map}).setDirections(response);
+            }
+        });
+
+    }
+</script>
+</head>
+<body style="margin:0px; padding:0px;" onload="initialize()">
+    <div id="map_canvas" style="width: 100%; height: 100%;" />
+</body>
+</html>
