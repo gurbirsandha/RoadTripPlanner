@@ -1,6 +1,6 @@
 from pprint import pprint
 import gmplot, googlemaps
-API_KEY = 'AIzaSyDJvLmeQoalVvo8h9lDP7c7j7n-9sneYhQ'
+API_KEY = 'AIzaSyCnZzCH2XyntclgjfNdhoo9Z35fPemo6H0'
 
 map_client = googlemaps.Client(API_KEY)
 # og = 'Jasper, AB'
